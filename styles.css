@@ -19,9 +19,18 @@ body {
 }
 
 h1 {
+    /* * İlk tercih: Georgia (güzel bir serif font)
+     * İkinci tercih: Times New Roman (Eğer Georgia yüklü değilse, yedek serif)
+     * Son tercih: serif (Herhangi bir serif font)
+     */
+    font-family: Georgia, "Times New Roman", Times, serif;
+    
+    /* Başlığınızın mevcut stilleri de burada kalabilir: */
     color: #333;
     margin-bottom: 20px;
 }
+
+/* Diğer mevcut stilleriniz... */
 
 /* Sayı Seçim Stili */
 .issue-selection {

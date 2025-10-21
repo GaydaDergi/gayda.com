@@ -53,20 +53,27 @@ function updateMagazine() {
     const totalPages = currentIssue.totalPages;
     const folder = currentIssue.folder;
     
-
-    // Resim yolunu ayarla: images/klasör_adı/sayfa_numarası.jpg
+    // Resim yolunu ayarla...
     // LÜTFEN DOSYA UZANTILARININ .jpg OLDUĞUNDAN EMİN OLUN
     pageImage.src = `images/${folder}/${currentPage}.jpg`;
     
     // Sayfa numarasını güncelle
     pageNumberSpan.textContent = `${currentPage} / ${totalPages}`;
 
+    // ----------------------------------------------------
+    // Özel Tuş Kontrolü
+    // ----------------------------------------------------
     if (currentIssueKey.includes("Sayı 2")) {
         specialButton.style.display = 'block'; // Tuşu görünür yap
     } else {
         specialButton.style.display = 'none'; // Diğer sayılarda tuşu gizle
     }
-}
+    // ----------------------------------------------------
+    
+    // Navigasyon butonlarını etkinleştir/devre dışı bırak (ŞİMDİ FONKSİYON İÇİNDE)
+    prevButton.disabled = currentPage === 1;
+    nextButton.disabled = currentPage === totalPages;
+} // <-- BU ARTIK FONKSİYONUN TEK VE DOĞRU KAPANIŞ PARANTEZİ
     
     // Navigasyon butonlarını etkinleştir/devre dışı bırak
     prevButton.disabled = currentPage === 1;

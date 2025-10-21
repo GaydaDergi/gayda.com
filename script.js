@@ -117,6 +117,6 @@ issueSelector.addEventListener('change', (event) => {
 
 // Özel Tuş Olay Dinleyicisi
 specialButton.addEventListener('click', () => {
-    const externalURL = "https://www.youtube.com/watch?v=REKLAM_FILMININ_LINKI"; 
+    const externalURL = "https://gaydadergi.github.io/gotkedileri.com/"; 
     window.open(externalURL, '_blank'); 
 });

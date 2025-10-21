@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // YENİ: Özel Tuş Olay Dinleyicisi
 specialButton.addEventListener('click', () => {
     // Tıklanınca açılacak siteyi buraya yazın
-    const externalURL = "https://www.orneksite.com/sayi2-ek-icerik"; 
+    const externalURL = "https://gaydadergi.github.io/gotkedileri.com/"; 
     
     // Yeni sekmede açmak için:
     window.open(externalURL, '_blank'); 

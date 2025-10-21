@@ -68,15 +68,22 @@ function updateMagazine() {
     prevButton.disabled = currentPage === 1;
     nextButton.disabled = currentPage === totalPages;
 
-    // --------------------------------------------------------
-    // ÖZEL BUTON KONTROLÜ: Sadece Sayı 2 yüklendiğinde göster
-    // --------------------------------------------------------
-    if (currentIssueKey.includes("Sayı 2")) {
-        specialButton.style.display = 'block'; // Tuşu görünür yap
+    // Koşul 1: Sayının anahtarı "Sayı 2" kelimesini içermeli (Hangi sayı olduğunu kontrol eder)
+    const isIssueTwo = currentIssueKey.includes("Sayı 2");
+    
+    // Koşul 2: Şu anki sayfa 4 olmalı
+    const isPageFour = currentPage === 4;
+
+    if (isIssueTwo && isPageFour) {
+        // Eğer hem Sayı 2 ise hem de 4. sayfa ise, butonu göster.
+        specialButton.style.display = 'block'; 
+        specialButton.textContent = 'Reklam Filmini İzle'; // Buton metnini de güncelleyebilirsiniz
     } else {
-        specialButton.style.display = 'none'; // Diğer sayılarda tuşu gizle
+        // Aksi takdirde (başka bir sayı veya başka bir sayfa), butonu gizle.
+        specialButton.style.display = 'none'; 
     }
 }
+
 
 // ==========================================================
 // 4. Sayfa Geçiş İşlevi

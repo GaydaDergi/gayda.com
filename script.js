@@ -1,7 +1,7 @@
 // Dergi sayılarını ve her birindeki sayfa sayısını tanımlayın.
 // DİKKAT: Yeni sayı çıktıkça bu objeyi güncellemeniz GEREKİR!
 const issues = {
-    "Sayı 2 (Ekim 2025) - SON SAYI": { folder: "sayi2", totalPages: 6 },
+    "Sayı 2 (Ekim 2025) - SON SAYI": { folder: "sayi2", totalPages: 4 },
     "Sayı 1 (Eylül 2024)": { folder: "sayi1", totalPages: 4 }
 };
 
@@ -11,6 +11,9 @@ const pageNumberSpan = document.getElementById('pageNumber');
 const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
 const issueSelector = document.getElementById('issueSelector');
+
+// YENİ: Özel Tuş
+const specialButton = document.getElementById('specialButton');
 
 // Durum Değişkenleri
 let currentIssueKey; // Şu anki sayının anahtarı (örn: "Sayı 3 (Kasım 2023)")
@@ -49,6 +52,7 @@ function loadIssue(issueKey) {
 function updateMagazine() {
     const totalPages = currentIssue.totalPages;
     const folder = currentIssue.folder;
+    
 
     // Resim yolunu ayarla: images/klasör_adı/sayfa_numarası.jpg
     // LÜTFEN DOSYA UZANTILARININ .jpg OLDUĞUNDAN EMİN OLUN
@@ -56,6 +60,13 @@ function updateMagazine() {
     
     // Sayfa numarasını güncelle
     pageNumberSpan.textContent = `${currentPage} / ${totalPages}`;
+
+    if (currentIssueKey.includes("Sayı 2")) {
+        specialButton.style.display = 'block'; // Tuşu görünür yap
+    } else {
+        specialButton.style.display = 'none'; // Diğer sayılarda tuşu gizle
+    }
+}
     
     // Navigasyon butonlarını etkinleştir/devre dışı bırak
     prevButton.disabled = currentPage === 1;
@@ -89,3 +100,20 @@ issueSelector.addEventListener('change', (event) => {
 document.addEventListener('DOMContentLoaded', () => {
     populateIssueSelector();
 });
+
+
+// YENİ: Özel Tuş Olay Dinleyicisi
+specialButton.addEventListener('click', () => {
+    // Tıklanınca açılacak siteyi buraya yazın
+    const externalURL = "https://www.orneksite.com/sayi2-ek-icerik"; 
+    
+    // Yeni sekmede açmak için:
+    window.open(externalURL, '_blank'); 
+
+    // Aynı sekmede açmak için (eğer bunu tercih ederseniz):
+    // window.location.href = externalURL;
+});
+
+
+// Sayfa yüklendiğinde uygulamayı başlat...
+// ...

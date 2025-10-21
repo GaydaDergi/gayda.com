@@ -1,7 +1,5 @@
 // Dergi sayılarını ve her birindeki sayfa sayısını tanımlayın.
-// Not: Anahtarların, özel buton kontrolü için "Sayı 2" içerdiğinden emin olun.
 const issues = {
-    // EN YENİ SAYI EN ÜSTTE OLMALI
     "Sayı 2 (Ekim 2025) - SON SAYI": { folder: "sayi2", totalPages: 4 },
     "Sayı 1 (Eylül 2024)": { folder: "sayi1", totalPages: 4 }
 };
@@ -12,18 +10,17 @@ const pageNumberSpan = document.getElementById('pageNumber');
 const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
 const issueSelector = document.getElementById('issueSelector');
-const specialButton = document.getElementById('specialButton'); // Özel Tuş
+const specialButton = document.getElementById('specialButton'); 
 
 // Durum Değişkenleri
-let currentIssueKey; // Şu anki sayının anahtarı (örn: "Sayı 2 (Ekim 2025) - SON SAYI")
-let currentIssue;    // Şu anki sayının detay objesi
-let currentPage = 1; // Şu anki sayfa numarası
+let currentIssueKey; 
+let currentIssue;    
+let currentPage = 1; 
 
 // ==========================================================
 // 1. Sayı Seçiciyi Doldurma İşlevi
 // ==========================================================
 function populateIssueSelector() {
-    // Sayıları sondan başa doğru (en yeni üste) listelemek için anahtarları ters çeviriyoruz
     const issueKeys = Object.keys(issues).reverse(); 
 
     issueKeys.forEach(key => {
@@ -33,21 +30,19 @@ function populateIssueSelector() {
         issueSelector.appendChild(option);
     });
     
-    // En son sayıyı varsayılan olarak seç (objenin ilk anahtarı)
     const latestIssueKey = Object.keys(issues)[0]; 
     issueSelector.value = latestIssueKey;
     
-    // Başlangıçta dergiyi yükle
     loadIssue(latestIssueKey);
 }
 
 // ==========================================================
-// 2. Sayıyı Yükleme İşlevi (Sayı seçimi veya sayfa yüklendiğinde çağrılır)
+// 2. Sayıyı Yükleme İşlevi
 // ==========================================================
 function loadIssue(issueKey) {
     currentIssueKey = issueKey;
     currentIssue = issues[issueKey];
-    currentPage = 1; // Yeni sayıya geçince her zaman ilk sayfadan başla
+    currentPage = 1; 
     updateMagazine();
 }
 
@@ -58,32 +53,33 @@ function updateMagazine() {
     const totalPages = currentIssue.totalPages;
     const folder = currentIssue.folder;
 
-    // Resim yolunu ayarla: images/klasör_adı/sayfa_numarası.jpg
+    // Resim yolunu ve sayfa numarasını güncelleme
     pageImage.src = `images/${folder}/${currentPage}.jpg`;
-    
-    // Sayfa numarasını güncelle
     pageNumberSpan.textContent = `${currentPage} / ${totalPages}`;
     
     // Navigasyon butonlarını etkinleştir/devre dışı bırak
     prevButton.disabled = currentPage === 1;
     nextButton.disabled = currentPage === totalPages;
 
-    // Koşul 1: Sayının anahtarı "Sayı 2" kelimesini içermeli (Hangi sayı olduğunu kontrol eder)
+    // --------------------------------------------------------
+    // KRİTİK BÖLÜM: ÖZEL BUTON KONTROLÜ
+    // --------------------------------------------------------
+    
+    // **1. ADIM: Her şeyden önce butonu GİZLE! (Bu, kalıcılığı önler)**
+    specialButton.style.display = 'none'; 
+    
+    // Koşul 1: Sayı "Sayı 2" kelimesini içermeli
     const isIssueTwo = currentIssueKey.includes("Sayı 2");
     
     // Koşul 2: Şu anki sayfa 4 olmalı
     const isPageFour = currentPage === 4;
 
     if (isIssueTwo && isPageFour) {
-        // Eğer hem Sayı 2 ise hem de 4. sayfa ise, butonu göster.
+        // 2. ADIM: Şartlar sağlanıyorsa GÖSTER!
         specialButton.style.display = 'block'; 
-        specialButton.textContent = 'Reklam Filmini İzle'; // Buton metnini de güncelleyebilirsiniz
-    } else {
-        // Aksi takdirde (başka bir sayı veya başka bir sayfa), butonu gizle.
-        specialButton.style.display = 'none'; 
+        specialButton.textContent = 'Reklam Filmini İzle'; 
     }
 }
-
 
 // ==========================================================
 // 4. Sayfa Geçiş İşlevi
@@ -103,6 +99,10 @@ function changePage(direction) {
 
 // Sayfa yüklendiğinde uygulamayı başlat
 document.addEventListener('DOMContentLoaded', () => {
+    // BURADA specialButton'ın gerçekten algılanıp algılanmadığını kontrol edin
+    if (!specialButton) {
+        console.error("HATA: 'specialButton' ID'li HTML elementi bulunamadı. Lütfen index.html'i kontrol edin.");
+    }
     populateIssueSelector();
 });
 
@@ -117,9 +117,6 @@ issueSelector.addEventListener('change', (event) => {
 
 // Özel Tuş Olay Dinleyicisi
 specialButton.addEventListener('click', () => {
-    // Tıklanınca açılacak siteyi buraya yazın
-    const externalURL = "https://gaydadergi.github.io/gotkedileri.com/"; 
-    
-    // Yeni sekmede açmak için:
+    const externalURL = "https://www.youtube.com/watch?v=REKLAM_FILMININ_LINKI"; 
     window.open(externalURL, '_blank'); 
 });

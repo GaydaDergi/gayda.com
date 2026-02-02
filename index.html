@@ -4,36 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gayda Dergi</title>
+
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>GAYDA</h1>
-        
-        <div class="issue-selection">
-            <label for="issueSelector">Sayı Seç:</label>
-            <select id="issueSelector"></select>
-        </div>
-        
-        <div id="magazine">
-            <img id="page" src="" alt="Dergi Sayfası">
-        </div>
-        
-        <div class="navigation">
-            <button id="prev">Önceki Sayfa</button>
-            <span id="pageNumber"></span>
-            <button id="next">Sonraki Sayfa</button>
-        </div>
-        
-        <div class="extra-navigation">
-            <button
-                id="specialButton"
-                style="display: none;"
-                onclick="window.open(this.dataset.url, '_blank')">
-            </button>
-        </div>
+
+<div class="container">
+    <h1>GAYDA</h1>
+
+    <!-- SAYI SEÇİCİ -->
+    <div class="issue-selection">
+        <label for="issueSelector">Sayı Seç:</label>
+        <select id="issueSelector"></select>
     </div>
 
-    <script src="script.js"></script>
+    <!-- DERGİ GÖRÜNTÜLEYİCİ -->
+    <div id="magazine" class="viewer">
+        <img id="page" alt="Dergi Sayfası">
+    </div>
+
+    <!-- ZOOM KONTROLLERİ -->
+    <div class="zoom-controls">
+        <button id="zoomOut">−</button>
+        <span id="zoomLevel">100%</span>
+        <button id="zoomIn">+</button>
+    </div>
+
+    <!-- SAYFA NAVİGASYONU -->
+    <div class="navigation">
+        <button id="prev">Önceki Sayfa</button>
+        <span id="pageNumber"></span>
+        <button id="next">Sonraki Sayfa</button>
+    </div>
+
+    <!-- ÖZEL BUTON -->
+    <div class="extra-navigation">
+        <button id="specialButton" style="display: none;"></button>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

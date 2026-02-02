@@ -72,11 +72,12 @@ h1 {
 /* Dergi Sayfası */
 #page {
     display: block;
-    max-width: none;               /* zoom için şart */
+    width: 100%;
     height: auto;
 
+    /* başlangıçta sayfa ekrana sığsın */
+    transform: none;
     transform-origin: top left;
-    transition: transform 0.15s ease;
 }
 
 /* ==========================================================

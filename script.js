@@ -1,6 +1,7 @@
 // Dergi sayılarını ve her birindeki sayfa sayısını tanımlayın.
 const issues = {
-    "Sayı 2 (Ekim 2025) - SON SAYI": { folder: "sayi2", totalPages: 4 },
+    "Sayı 3 (Kış 2026) - SON SAYI": { folder: "sayi_3", totalPages: 4 },
+    "Sayı 2 (Ekim 2025)": { folder: "sayi2", totalPages: 4 },
     "Sayı 1 (Eylül 2024)": { folder: "sayi1", totalPages: 4 }
 };
 

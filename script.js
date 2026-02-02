@@ -51,14 +51,8 @@ let currentIssue;
 let currentPage = 1;
 
 let zoomLevel = 1;
-let isZoomed = false;
 const ZOOM_STEP = 0.2;
-const MIN_ZOOM = 0.5;
 const MAX_ZOOM = 3;
-
-// ==========================================================
-// ZOOM
-// ==========================================================
 
 function applyZoom() {
     pageImage.style.transform = `scale(${zoomLevel})`;
@@ -75,7 +69,6 @@ function zoomOut() {
     applyZoom();
 }
 
-}
 
 // ==========================================================
 // SAYI SEÇİCİ
@@ -135,8 +128,8 @@ function updateMagazine() {
         specialButton.dataset.url = matchedConfig.url;
     }
 
-    zoomLevel = 1;
-    applyZoom();
+zoomLevel = 1;
+applyZoom();
 
 }
 

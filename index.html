@@ -12,8 +12,7 @@
         
         <div class="issue-selection">
             <label for="issueSelector">Sayı Seç:</label>
-            <select id="issueSelector">
-            </select>
+            <select id="issueSelector"></select>
         </div>
         
         <div id="magazine">
@@ -27,9 +26,14 @@
         </div>
         
         <div class="extra-navigation">
-            <button id="specialButton" style="display: none;">Reklam Filmini İzle</button>
+            <button
+                id="specialButton"
+                style="display: none;"
+                onclick="window.open(this.dataset.url, '_blank')">
+            </button>
         </div>
-    
-    </div> <script src="script.js"></script>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

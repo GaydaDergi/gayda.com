@@ -9,7 +9,7 @@ const issues = {
 };
 
 // ==========================================================
-// ÖZEL BUTON – DATA DRIVEN KONFİG
+// ÖZEL BUTON KONFİG
 // ==========================================================
 
 const specialButtonConfig = [
@@ -31,12 +31,16 @@ const specialButtonConfig = [
 // DOM ELEMANLARI
 // ==========================================================
 
-const pageImage = document.getElementById('page');
-const pageNumberSpan = document.getElementById('pageNumber');
-const prevButton = document.getElementById('prev');
-const nextButton = document.getElementById('next');
-const issueSelector = document.getElementById('issueSelector');
-const specialButton = document.getElementById('specialButton');
+const pageImage = document.getElementById("page");
+const pageNumberSpan = document.getElementById("pageNumber");
+const prevButton = document.getElementById("prev");
+const nextButton = document.getElementById("next");
+const issueSelector = document.getElementById("issueSelector");
+const specialButton = document.getElementById("specialButton");
+
+const zoomInBtn = document.getElementById("zoomIn");
+const zoomOutBtn = document.getElementById("zoomOut");
+const zoomLevelSpan = document.getElementById("zoomLevel");
 
 // ==========================================================
 // STATE
@@ -46,15 +50,39 @@ let currentIssueKey;
 let currentIssue;
 let currentPage = 1;
 
+let zoomLevel = 1;
+const ZOOM_STEP = 0.2;
+const MIN_ZOOM = 0.5;
+const MAX_ZOOM = 3;
+
 // ==========================================================
-// SAYI SEÇİCİYİ DOLDUR
+// ZOOM
+// ==========================================================
+
+function applyZoom() {
+    pageImage.style.transform = `scale(${zoomLevel})`;
+    zoomLevelSpan.textContent = Math.round(zoomLevel * 100) + "%";
+}
+
+function zoomIn() {
+    zoomLevel = Math.min(MAX_ZOOM, zoomLevel + ZOOM_STEP);
+    applyZoom();
+}
+
+function zoomOut() {
+    zoomLevel = Math.max(MIN_ZOOM, zoomLevel - ZOOM_STEP);
+    applyZoom();
+}
+
+// ==========================================================
+// SAYI SEÇİCİ
 // ==========================================================
 
 function populateIssueSelector() {
     const issueKeys = Object.keys(issues).reverse();
 
     issueKeys.forEach(key => {
-        const option = document.createElement('option');
+        const option = document.createElement("option");
         option.value = key;
         option.textContent = key;
         issueSelector.appendChild(option);
@@ -81,8 +109,7 @@ function loadIssue(issueKey) {
 // ==========================================================
 
 function updateMagazine() {
-    const totalPages = currentIssue.totalPages;
-    const folder = currentIssue.folder;
+    const { folder, totalPages } = currentIssue;
 
     pageImage.src = `images/${folder}/${currentPage}.jpg`;
     pageNumberSpan.textContent = `${currentPage} / ${totalPages}`;
@@ -90,11 +117,8 @@ function updateMagazine() {
     prevButton.disabled = currentPage === 1;
     nextButton.disabled = currentPage === totalPages;
 
-    // -------------------------------
-    // ÖZEL BUTON (DATA DRIVEN)
-    // -------------------------------
-
-    specialButton.style.display = 'none';
+    // ---- özel buton ----
+    specialButton.style.display = "none";
     specialButton.dataset.url = "";
 
     const matchedConfig = specialButtonConfig.find(cfg =>
@@ -103,10 +127,13 @@ function updateMagazine() {
     );
 
     if (matchedConfig) {
-        specialButton.style.display = 'block';
+        specialButton.style.display = "block";
         specialButton.textContent = matchedConfig.text;
         specialButton.dataset.url = matchedConfig.url;
     }
+
+    // zoom korunur
+    applyZoom();
 }
 
 // ==========================================================
@@ -125,16 +152,20 @@ function changePage(direction) {
 // EVENTLER
 // ==========================================================
 
-document.addEventListener('DOMContentLoaded', () => {
-    if (!specialButton) {
-        console.error("specialButton bulunamadı!");
-    }
-    populateIssueSelector();
+document.addEventListener("DOMContentLoaded", populateIssueSelector);
+
+prevButton.addEventListener("click", () => changePage(-1));
+nextButton.addEventListener("click", () => changePage(1));
+
+issueSelector.addEventListener("change", e => {
+    loadIssue(e.target.value);
 });
 
-prevButton.addEventListener('click', () => changePage(-1));
-nextButton.addEventListener('click', () => changePage(1));
+zoomInBtn.addEventListener("click", zoomIn);
+zoomOutBtn.addEventListener("click", zoomOut);
 
-issueSelector.addEventListener('change', (e) => {
-    loadIssue(e.target.value);
+specialButton.addEventListener("click", () => {
+    if (specialButton.dataset.url) {
+        window.open(specialButton.dataset.url, "_blank");
+    }
 });

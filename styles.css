@@ -94,3 +94,10 @@ button:disabled {
     font-weight: bold;
     font-size: 1.2em;
 }
+
+.extra-navigation {
+    display: flex;
+    justify-content: flex-end; /* SAĞA YASLAR */
+    margin-top: 10px;
+}
+

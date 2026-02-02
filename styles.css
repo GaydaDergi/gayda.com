@@ -1,7 +1,3 @@
-/* ==========================================================
-   GENEL
-   ========================================================== */
-
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -11,10 +7,6 @@ body {
     margin: 0;
     background-color: #f4f4f4;
 }
-
-/* ==========================================================
-   ANA KUTU
-   ========================================================== */
 
 .container {
     background: #fff;
@@ -26,125 +18,52 @@ body {
     width: 95%;
 }
 
-/* ==========================================================
-   BAŞLIK
-   ========================================================== */
-
 h1 {
     font-family: Georgia, "Times New Roman", Times, serif;
-    color: #333;
     margin-bottom: 20px;
 }
-
-/* ==========================================================
-   SAYI SEÇİMİ
-   ========================================================== */
 
 .issue-selection {
     margin-bottom: 20px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
 }
-
-#issueSelector {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-    margin-left: 10px;
-}
-
-/* ==========================================================
-   DERGİ GÖRÜNTÜLEYİCİ
-   ========================================================== */
 
 .viewer {
-    margin-bottom: 15px;
     border: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-
-    /* ZOOM İÇİN KRİTİK */
     overflow: auto;
     max-height: 80vh;
 }
 
-/* Dergi Sayfası */
 #page {
-    display: block;
     width: 100%;
     height: auto;
+    display: block;
 
-    /* başlangıçta sayfa ekrana sığsın */
-    transform: none;
+    /* ZOOM BURADAN */
     transform-origin: top left;
+    transition: transform 0.15s ease;
 }
-
-/* ==========================================================
-   ZOOM KONTROLLERİ
-   ========================================================== */
 
 .zoom-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
+    margin: 10px 0;
 }
-
-#zoomLevel {
-    font-weight: bold;
-    min-width: 60px;
-    display: inline-block;
-}
-
-/* ==========================================================
-   SAYFA NAVİGASYONU
-   ========================================================== */
 
 .navigation {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
-}
-
-#pageNumber {
-    font-weight: bold;
-    font-size: 1.1em;
-}
-
-/* ==========================================================
-   ÖZEL BUTON
-   ========================================================== */
-
-.extra-navigation {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
     margin-top: 10px;
 }
 
-/* ==========================================================
-   BUTONLAR (GENEL)
-   ========================================================== */
-
 button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
     padding: 8px 14px;
+    border: none;
     border-radius: 5px;
+    background: #007bff;
+    color: #fff;
     cursor: pointer;
-    font-size: 0.95em;
-    transition: background-color 0.2s ease;
-}
-
-button:hover:not(:disabled) {
-    background-color: #0056b3;
 }
 
 button:disabled {
-    background-color: #cccccc;
+    background: #ccc;
     cursor: not-allowed;
 }

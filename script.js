@@ -63,24 +63,24 @@ function updateMagazine() {
     nextButton.disabled = currentPage === totalPages;
 
     // --------------------------------------------------------
-    // KRİTİK BÖLÜM: ÖZEL BUTON KONTROLÜ
-    // --------------------------------------------------------
-    
-    // **1. ADIM: Her şeyden önce butonu GİZLE! (Bu, kalıcılığı önler)**
-    specialButton.style.display = 'none'; 
-    
-    // Koşul 1: Sayı "Sayı 2" kelimesini içermeli
-    const isIssueTwo = currentIssueKey.includes("Sayı 2");
-    
-    // Koşul 2: Şu anki sayfa 4 olmalı
-    const isPageFour = currentPage === 4;
+// ÖZEL BUTON KONTROLÜ (DATA-DRIVEN)
+// --------------------------------------------------------
 
-    if (isIssueTwo && isPageFour) {
-        // 2. ADIM: Şartlar sağlanıyorsa GÖSTER!
-        specialButton.style.display = 'block'; 
-        specialButton.textContent = 'Reklam Filmini İzle'; 
-    }
+specialButton.style.display = 'none';
+specialButton.dataset.url = "";
+
+// Uygun konfigürasyonu bul
+const matchedConfig = specialButtonConfig.find(config =>
+    currentIssueKey.includes(config.issueIncludes) &&
+    currentPage === config.page
+);
+
+if (matchedConfig) {
+    specialButton.style.display = 'block';
+    specialButton.textContent = matchedConfig.text;
+    specialButton.dataset.url = matchedConfig.url;
 }
+
 
 // ==========================================================
 // 4. Sayfa Geçiş İşlevi
@@ -116,8 +116,23 @@ issueSelector.addEventListener('change', (event) => {
     loadIssue(event.target.value);
 });
 
-// Özel Tuş Olay Dinleyicisi
-specialButton.addEventListener('click', () => {
-    const externalURL = "https://gaydadergi.github.io/gotkedileri.com/"; 
-    window.open(externalURL, '_blank'); 
+// --------------------------------------------------------
+// ÖZEL BUTON KONFİGÜRASYONU (DATA-DRIVEN)
+// --------------------------------------------------------
+
+const specialButtonConfig = [
+    {
+        issueIncludes: "Sayı 2",
+        page: 4,
+        text: "Reklam Filmini İzle",
+        url: "https://gaydadergi.github.io/gotkedileri.com/"
+    },
+    {
+        issueIncludes: "Sayı 3",
+        page: 4,
+        text: "Limon Abla ve Haydari Bey Formu",
+        url: "https://docs.google.com/forms/d/e/1FAIpQLSfoYn2uCizos0YDeiRtMM9a6bZX7wLcnKfSkv46Akt9NDzQww/viewform"
+    }
+];
+
 });

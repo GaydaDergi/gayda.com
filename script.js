@@ -17,13 +17,13 @@ const specialButtonConfig = [
         issueIncludes: "Sayı 2",
         page: 4,
         text: "Reklam Filmini İzle",
-        url: "https://REKLAM-LINKI-BURAYA"
+        url: "https://gaydadergi.github.io/gotkedileri.com/"
     },
     {
         issueIncludes: "Sayı 3",
         page: 4,
         text: "Limon Abla ve Haydari Bey Formu",
-        url: "https://FORM-LINKI-BURAYA"
+        url: "https://docs.google.com/forms/d/e/1FAIpQLSfoYn2uCizos0YDeiRtMM9a6bZX7wLcnKfSkv46Akt9NDzQww/viewform"
     }
 ];
 

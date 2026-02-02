@@ -96,8 +96,10 @@ button:disabled {
 }
 
 .extra-navigation {
+    width: 100%;
     display: flex;
-    justify-content: flex-end; /* SAĞA YASLAR */
-    margin-top: 10px;
+    justify-content: flex-end;
+    text-align: right; /* container'daki center'ı ezer */
 }
+
 

@@ -51,6 +51,7 @@ let currentIssue;
 let currentPage = 1;
 
 let zoomLevel = 1;
+let isZoomed = false;
 const ZOOM_STEP = 0.2;
 const MIN_ZOOM = 0.5;
 const MAX_ZOOM = 3;
@@ -70,8 +71,10 @@ function zoomIn() {
 }
 
 function zoomOut() {
-    zoomLevel = Math.max(MIN_ZOOM, zoomLevel - ZOOM_STEP);
+    zoomLevel = Math.max(1, zoomLevel - ZOOM_STEP);
     applyZoom();
+}
+
 }
 
 // ==========================================================
@@ -132,8 +135,9 @@ function updateMagazine() {
         specialButton.dataset.url = matchedConfig.url;
     }
 
-    // zoom korunur
+    zoomLevel = 1;
     applyZoom();
+
 }
 
 // ==========================================================

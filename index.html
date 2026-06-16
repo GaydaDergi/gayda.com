@@ -6,38 +6,41 @@
     <title>Gayda Dergi</title>
 
     <link rel="stylesheet" href="styles.css">
+    
+    <script>
+      if (window.location.hostname.includes('gayda.gay')) {
+        document.documentElement.classList.add('pride');
+      }
+    </script>
 </head>
 <body>
+
+<div class="pride-line"></div>
 
 <div class="container">
     <h1>GAYDA</h1>
 
-    <!-- SAYI SEÇİCİ -->
     <div class="issue-selection">
         <label for="issueSelector">Sayı Seç:</label>
         <select id="issueSelector"></select>
     </div>
 
-    <!-- DERGİ GÖRÜNTÜLEYİCİ -->
     <div id="magazine" class="viewer">
         <img id="page" alt="Dergi Sayfası">
     </div>
 
-    <!-- ZOOM KONTROLLERİ -->
     <div class="zoom-controls">
         <button id="zoomOut">−</button>
         <span id="zoomLevel">100%</span>
         <button id="zoomIn">+</button>
     </div>
 
-    <!-- SAYFA NAVİGASYONU -->
     <div class="navigation">
         <button id="prev">Önceki Sayfa</button>
         <span id="pageNumber"></span>
         <button id="next">Sonraki Sayfa</button>
     </div>
 
-    <!-- ÖZEL BUTON -->
     <div class="extra-navigation">
         <button id="specialButton" style="display: none;"></button>
     </div>

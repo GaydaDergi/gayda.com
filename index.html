@@ -7,19 +7,20 @@
 
     <link rel="stylesheet" href="styles.css">
     
-    <script>
-      // Kullanıcı gayda.gay üzerinden yönlendirilerek geldiyse veya direkt o domaindeyse
-      if (document.referrer.includes('gayda.gay') || window.location.hostname.includes('gayda.gay')) {
-        document.documentElement.classList.add('pride');
-        // Tarayıcı hafızasına kaydet (Sayfa yenilense veya değişse de renkli kalması için)
-        sessionStorage.setItem('prideMode', 'true');
-      }
+<script>
+  // URL'de "?tema=pride" var mı diye kontrol et
+  const urlParams = new URLSearchParams(window.location.search);
+  
+  if (urlParams.get('tema') === 'pride') {
+    document.documentElement.classList.add('pride');
+    sessionStorage.setItem('prideMode', 'true');
+  }
 
-      // Eğer tarayıcı hafızasında prideMode aktifse temayı koru
-      if (sessionStorage.getItem('prideMode') === 'true') {
-        document.documentElement.classList.add('pride');
-      }
-    </script>
+  // Sayfa değiştirse bile rengi koru
+  if (sessionStorage.getItem('prideMode') === 'true') {
+    document.documentElement.classList.add('pride');
+  }
+</script>
 </head>
 <body>
 

@@ -13,20 +13,18 @@
 }
 
 :root.pride {
-  /* Arka plan tamamen akıcı Pride renkleri (Gökkuşağı) */
   --bg-color: linear-gradient(135deg, #e40303, #ff8c00, #ffed00, #008026, #004cff, #732982);
   
-  /* Ortadaki dergi kutusunun (container) arka planı yarı saydam beyaz (içerik okunsun diye) */
-  --container-bg: rgba(255, 255, 255, 0.85); 
+  /* CONTAINER'I TAMAMEN ŞEFFAF YAPTIK */
+  --container-bg: transparent; 
   
-  --text-color: #000000;       /* Yazılar siyah */
+  --text-color: #ffffff;       /* Geri kalan metinler de şık dursun diye beyaz */
   --h1-color: #ffffff;         /* GAYDA yazısı beyaz */
-  
   --btn-bg: #ffffff;           /* Tuşlar beyaz */
   --btn-text: #000000;         /* Tuş yazıları siyah */
-  
-  --line-display: none;        /* Arka plan zaten gökkuşağı olduğu için üst şeride gerek yok */
-  --viewer-border: 2px solid #000000; /* Dergi çerçevesi net olsun diye siyah */
+  --line-display: none;        
+  --viewer-border: 2px solid #ffffff; /* Dergi çerçevesi de beyaz olsun, şık durur */
+   --container-shadow: none; /* Pride modunda gölgeyi kapatır */
 }
 
 /* ==========================================================================
@@ -60,14 +58,16 @@ body {
 }
 
 .container {
-  background: var(--container-bg);    /* Doğru kullanım bu şekildedir */
+  background: var(--container-bg);
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   max-width: 900px;
   width: 95%;
   transition: background 0.3s ease;
+  
+  /* Normal modda gölge olsun ama pride modunda temizlensin diye shadow'u dinamik yapalım */
+  box-shadow: var(--container-shadow, 0 4px 8px rgba(0, 0, 0, 0.1));
 }
 
 h1 {

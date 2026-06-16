@@ -1,22 +1,33 @@
-/* --- TEMA DEĞİŞKENLERİ --- */
+/* ==========================================================================
+   1. TEMA DEĞİŞKENLERİ
+   ========================================================================== */
 :root {
-  --bg-color: #f4f4f4;        /* Normal arka plan */
-  --text-color: #333333;      /* Normal yazı rengi */
-  --btn-bg: #007bff;          /* Normal buton rengi */
-  --btn-text: #ffffff;        /* Normal buton yazı rengi */
-  --line-display: none;       /* Normal sitede gökkuşağı şeridi gizli */
+  --bg-color: #f4f4f4;         /* Normal arka plan */
+  --container-bg: #ffffff;     /* Normal kart arka planı */
+  --text-color: #333333;       /* Normal yazı rengi */
+  --h1-color: #000000;         /* Normal başlık rengi */
+  --btn-bg: #007bff;           /* Normal buton rengi */
+  --btn-text: #ffffff;         /* Normal buton yazı rengi */
+  --line-display: none;        /* Normal sitede gökkuşağı şeridi gizli */
+  --viewer-border: 1px solid #ddd;
 }
 
 :root.pride {
-  --bg-color: #fffaf0;        /* Pride için sıcak krem arka plan */
-  --text-color: #111111;
-  /* Butonlar için şık bir Pride gradyanı */
+  --bg-color: #121212;         /* Koyu mod arka plan (Gökkuşağını patlatır) */
+  --container-bg: #1e1e1e;     /* Pride modu kart arka planı */
+  --text-color: #f4f4f4;       /* Pride modu yazı rengi */
+  /* Gökkuşağı Başlık */
+  --h1-color: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #8b00ff);
+  /* Gökkuşağı Butonlar */
   --btn-bg: linear-gradient(45deg, #e40303, #ff8c00, #ffed00, #008026, #004cff, #732982);
   --btn-text: #ffffff;
-  --line-display: block;      /* Pride sitesinde üst şeridi göster */
+  --line-display: block;       /* Pride sitesinde üst şeridi göster */
+  --viewer-border: 2px solid #ff8c00; /* Dergi çerçevesini turuncu yapar */
 }
 
-/* --- ÜST GÖKKUŞAĞI ŞERİDİ --- */
+/* ==========================================================================
+   2. ÜST GÖKKUŞAĞI ŞERİDİ
+   ========================================================================== */
 .pride-line {
   display: var(--line-display);
   height: 6px;
@@ -28,86 +39,106 @@
   background: linear-gradient(to right, #e40303, #ff8c00, #ffed00, #008026, #004cff, #732982);
 }
 
-/* --- RENKLERİ ELEMENTLERE BAĞLAMA --- */
+/* ==========================================================================
+   3. GENEL SAYFA YAPISI VE ELEMENTLER
+   ========================================================================== */
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
-
-/* CSS dosendeki butonların (prev, next, zoom vb.) rengini buraya bağla */
-button {
-  background: var(--btn-bg);
-  color: var(--btn-text);
-  /* Eğer gradyan kullanıyorsan border-none veya border rengini ayarlamak iyi olur */
-  border: none; 
-}
-
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--bg-color); /* Değişkene bağlandı */
+  color: var(--text-color);           /* Değişkene bağlandı */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    max-width: 900px;
-    width: 95%;
+  background: var(--container-bg);    /* Değişkene bağlandı */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 900px;
+  width: 95%;
+  transition: background 0.3s ease;
 }
 
 h1 {
-    font-family: Georgia, "Times New Roman", Times, serif;
-    margin-bottom: 20px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin-bottom: 20px;
+  color: var(--h1-color);
+  
+  /* Eğer Pride modundaysak yazıyı gradyan yapmak için hile: */
+  background: var(--h1-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Normal modda düz renk görünmesi için fallback: */
+  display: inline-block; 
 }
 
 .issue-selection {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+/* Pride modunda select kutusu da şık dursun */
+.issue-selection select {
+  padding: 5px;
+  border-radius: 4px;
+  background: var(--container-bg);
+  color: var(--text-color);
+  border: 1px solid #ccc;
 }
 
 .viewer {
-    border: 1px solid #ddd;
-    overflow: auto;
-    max-height: 80vh;
+  border: var(--viewer-border);       /* Değişkene bağlandı */
+  overflow: auto;
+  max-height: 80vh;
+  background: #fff; /* Dergi sayfalarının arkası beyaz kalsın */
 }
 
 #page {
-    width: 100%;
-    height: auto;
-    display: block;
-
-    /* ZOOM BURADAN */
-    transform-origin: top left;
-    transition: transform 0.15s ease;
+  width: 100%;
+  height: auto;
+  display: block;
+  /* ZOOM BURADAN */
+  transform-origin: top left;
+  transition: transform 0.15s ease;
 }
 
 .zoom-controls {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
 }
 
+/* ==========================================================================
+   4. BUTONLAR
+   ========================================================================== */
 button {
-    padding: 8px 14px;
-    border: none;
-    border-radius: 5px;
-    background: #007bff;
-    color: #fff;
-    cursor: pointer;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 5px;
+  background: var(--btn-bg);          /* Değişkene bağlandı */
+  color: var(--btn-text);            /* Değişkene bağlandı */
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+button:active {
+  transform: scale(0.98); /* Tıklayınca hafif basılma hissi */
 }
 
 button:disabled {
-    background: #ccc;
-    cursor: not-allowed;
+  background: #ccc !important;
+  color: #fff !important;
+  cursor: not-allowed;
+  -webkit-text-fill-color: #fff !important; /* Pride modunda yazının görünmesi için */
 }

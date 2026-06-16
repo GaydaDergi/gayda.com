@@ -53,9 +53,10 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  background-color: var(--bg-color); /* Değişkene bağlandı */
-  color: var(--text-color);           /* Değişkene bağlandı */
-  transition: background-color 0.3s ease, color 0.3s ease;
+  /* background-color yerine düz background kullandık ki gradyan çalışsın */
+  background: var(--bg-color); 
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -72,12 +73,9 @@ body {
 h1 {
   font-family: Georgia, "Times New Roman", Times, serif;
   margin-bottom: 20px;
-  color: var(--h1-color); /* Pride modunda beyaz, normalde siyah olur */
-  background: none;
-  -webkit-background-clip: initial;
-  -webkit-text-fill-color: initial;
+  color: var(--h1-color) !important; /* Diğer renk hilelerini tamamen ezmesi için */
+  -webkit-text-fill-color: initial !important;
 }
-
 .issue-selection {
   margin-bottom: 20px;
 }

@@ -8,19 +8,15 @@
     <link rel="stylesheet" href="styles.css">
     
 <script>
-  // URL'de "?tema=pride" var mı diye kontrol et
-  const urlParams = new URLSearchParams(window.location.search);
-  
-  if (urlParams.get('tema') === 'pride') {
-    document.documentElement.classList.add('pride');
-    sessionStorage.setItem('prideMode', 'true');
-  }
-
-  // Sayfa değiştirse bile rengi koru
-  if (sessionStorage.getItem('prideMode') === 'true') {
-    document.documentElement.classList.add('pride');
-  }
-</script>
+      // URL parametrelerini kontrol et (?tema=pride var mı)
+      const urlParams = new URLSearchParams(window.location.search);
+      
+      if (urlParams.get('tema') === 'pride' || sessionStorage.getItem('prideMode') === 'true') {
+        document.documentElement.classList.add('pride');
+        // Sayfa geçişlerinde veya yenilemelerde temanın kaybolmaması için hafızaya al
+        sessionStorage.setItem('prideMode', 'true');
+      }
+    </script>
 </head>
 <body>
 

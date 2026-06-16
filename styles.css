@@ -13,18 +13,19 @@
 }
 
 :root.pride {
-  /* Arka plan tamamen akıcı Pride renkleri (Gökkuşağı) */
+  /* ... diğer değişkenlerin aynen kalıyor ... */
   --bg-color: linear-gradient(135deg, #e40303, #ff8c00, #ffed00, #008026, #004cff, #732982);
-  
-  /* İstediğin gibi: Kutu tamamen şeffaf ve gölgesiz */
   --container-bg: transparent; 
   --container-shadow: none;
+  --text-color: #ffffff;       
+  --h1-color: #ffffff;         
   
-  --text-color: #ffffff;       /* Yazılar beyaz (arka planda okunsun diye) */
-  --h1-color: #ffffff;         /* GAYDA yazısı beyaz */
-  --btn-bg: #ffffff;           /* Tuşlar beyaz */
-  --btn-text: #000000;         /* Tuş yazıları siyah */
-  --viewer-border: 2px solid #ffffff; /* Dergi çerçevesi beyaz */
+  /* YENİ BUTON DEĞİŞKENLERİ */
+  --btn-bg: transparent;       /* İçleri şeffaf */
+  --btn-text: #ffffff;         /* Yazıları beyaz */
+  --btn-border: 2px solid #ffffff; /* Beyaz kenarlık */
+  
+  --viewer-border: 2px solid #ffffff; 
 }
 
 /* ==========================================================================
@@ -104,13 +105,18 @@ h1 {
    ========================================================================== */
 button {
   padding: 8px 14px;
-  border: none;
+  border: var(--btn-border, none); /* Pride modunda beyaz kenarlık, normalde none olur */
   border-radius: 5px;
   background: var(--btn-bg);
   color: var(--btn-text);
   cursor: pointer;
   font-weight: bold;
-  transition: background 0.3s ease, transform 0.1s ease;
+  transition: all 0.3s ease; /* border geçişleri de yumuşak olsun diye all yaptık */
+}
+
+button:hover:not(:disabled) {
+  /* Butonun üzerine gelindiğinde hafifçe belirginleşmesi için şık bir dokunuş */
+  background: rgba(255, 255, 255, 0.1); 
 }
 
 button:active {
@@ -118,7 +124,8 @@ button:active {
 }
 
 button:disabled {
-  background: #ccc !important;
-  color: #fff !important;
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.4) !important; /* Pasifken yazısı soluk beyaz olsun */
+  border-color: rgba(255, 255, 255, 0.4) !important; /* Pasifken çerçevesi soluk olsun */
   cursor: not-allowed;
 }

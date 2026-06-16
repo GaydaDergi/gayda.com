@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. TEMA DEĞİŞKENLERİ
+   1. TEMA DEĞİŞKENLERİ (YENİ TASARIM)
    ========================================================================== */
 :root {
   --bg-color: #f4f4f4;         /* Normal arka plan */
@@ -13,16 +13,20 @@
 }
 
 :root.pride {
-  --bg-color: #121212;         /* Koyu mod arka plan (Gökkuşağını patlatır) */
-  --container-bg: #1e1e1e;     /* Pride modu kart arka planı */
-  --text-color: #f4f4f4;       /* Pride modu yazı rengi */
-  /* Gökkuşağı Başlık */
-  --h1-color: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #8b00ff);
-  /* Gökkuşağı Butonlar */
-  --btn-bg: linear-gradient(45deg, #e40303, #ff8c00, #ffed00, #008026, #004cff, #732982);
-  --btn-text: #ffffff;
-  --line-display: block;       /* Pride sitesinde üst şeridi göster */
-  --viewer-border: 2px solid #ff8c00; /* Dergi çerçevesini turuncu yapar */
+  /* Arka plan tamamen akıcı Pride renkleri (Gökkuşağı) */
+  --bg-color: linear-gradient(135deg, #e40303, #ff8c00, #ffed00, #008026, #004cff, #732982);
+  
+  /* Ortadaki dergi kutusunun (container) arka planı yarı saydam beyaz (içerik okunsun diye) */
+  --container-bg: rgba(255, 255, 255, 0.85); 
+  
+  --text-color: #000000;       /* Yazılar siyah */
+  --h1-color: #ffffff;         /* GAYDA yazısı beyaz */
+  
+  --btn-bg: #ffffff;           /* Tuşlar beyaz */
+  --btn-text: #000000;         /* Tuş yazıları siyah */
+  
+  --line-display: none;        /* Arka plan zaten gökkuşağı olduğu için üst şeride gerek yok */
+  --viewer-border: 2px solid #000000; /* Dergi çerçevesi net olsun diye siyah */
 }
 
 /* ==========================================================================
@@ -68,14 +72,10 @@ body {
 h1 {
   font-family: Georgia, "Times New Roman", Times, serif;
   margin-bottom: 20px;
-  color: var(--h1-color);
-  
-  /* Eğer Pride modundaysak yazıyı gradyan yapmak için hile: */
-  background: var(--h1-color);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  /* Normal modda düz renk görünmesi için fallback: */
-  display: inline-block; 
+  color: var(--h1-color); /* Pride modunda beyaz, normalde siyah olur */
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
 }
 
 .issue-selection {

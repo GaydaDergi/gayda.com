@@ -1,3 +1,47 @@
+/* --- TEMA DEĞİŞKENLERİ --- */
+:root {
+  --bg-color: #f4f4f4;        /* Normal arka plan */
+  --text-color: #333333;      /* Normal yazı rengi */
+  --btn-bg: #007bff;          /* Normal buton rengi */
+  --btn-text: #ffffff;        /* Normal buton yazı rengi */
+  --line-display: none;       /* Normal sitede gökkuşağı şeridi gizli */
+}
+
+:root.pride {
+  --bg-color: #fffaf0;        /* Pride için sıcak krem arka plan */
+  --text-color: #111111;
+  /* Butonlar için şık bir Pride gradyanı */
+  --btn-bg: linear-gradient(45deg, #e40303, #ff8c00, #ffed00, #008026, #004cff, #732982);
+  --btn-text: #ffffff;
+  --line-display: block;      /* Pride sitesinde üst şeridi göster */
+}
+
+/* --- ÜST GÖKKUŞAĞI ŞERİDİ --- */
+.pride-line {
+  display: var(--line-display);
+  height: 6px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background: linear-gradient(to right, #e40303, #ff8c00, #ffed00, #008026, #004cff, #732982);
+}
+
+/* --- RENKLERİ ELEMENTLERE BAĞLAMA --- */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* CSS dosendeki butonların (prev, next, zoom vb.) rengini buraya bağla */
+button {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  /* Eğer gradyan kullanıyorsan border-none veya border rengini ayarlamak iyi olur */
+  border: none; 
+}
+
 body {
     font-family: Arial, sans-serif;
     display: flex;

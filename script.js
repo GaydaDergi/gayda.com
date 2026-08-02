@@ -23,7 +23,8 @@ function init() {
     // ==========================================================
 
     const issues = {
-        "Sayı 3 (Kış 2026) - SON SAYI": { folder: "sayi_3", totalPages: 4 },
+        "Sayı 4 (Yaz 2026) - SON SAYI": { folder: "sayi4", totalPages: 4 }, // Buradaki 4 yerine toplam kaç sayfa yüklendiyseniz o sayıyı yazın
+        "Sayı 3 (Kış 2026)": { folder: "sayi_3", totalPages: 4 }, // "- SON SAYI" ibaresini Sayı 3'ten kaldırdık
         "Sayı 2 (Ekim 2025)": { folder: "sayi2", totalPages: 4 },
         "Sayı 1 (Eylül 2024)": { folder: "sayi1", totalPages: 4 }
     };

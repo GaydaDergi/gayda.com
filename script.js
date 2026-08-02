@@ -23,7 +23,7 @@ function init() {
     // ==========================================================
 
     const issues = {
-        "Sayı 4 (Yaz 2026) - SON SAYI": { folder: "sayi4", totalPages: 24, ext: "png" },
+        "Sayı 4 (Yaz 2026) - SON SAYI": { folder: "sayi4", totalPages: 4, ext: "png" },
         "Sayı 3 (Kış 2026)": { folder: "sayi_3", totalPages: 4, ext: "jpg" },
         "Sayı 2 (Ekim 2025)": { folder: "sayi2", totalPages: 4, ext: "jpg" },
         "Sayı 1 (Eylül 2024)": { folder: "sayi1", totalPages: 4, ext: "jpg" }
@@ -42,6 +42,12 @@ function init() {
         },
         {
             issueIncludes: "Sayı 3",
+            page: 4,
+            text: "Limon Abla ve Haydari Bey Formu",
+            url: "https://docs.google.com/forms/d/e/1FAIpQLSfoYn2uCizos0YDeiRtMM9a6bZX7wLcnKfSkv46Akt9NDzQww/viewform"
+        },
+        {
+            issueIncludes: "Sayı 4",
             page: 4,
             text: "Limon Abla ve Haydari Bey Formu",
             url: "https://docs.google.com/forms/d/e/1FAIpQLSfoYn2uCizos0YDeiRtMM9a6bZX7wLcnKfSkv46Akt9NDzQww/viewform"

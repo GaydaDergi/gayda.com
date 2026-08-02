@@ -18,15 +18,15 @@ function init() {
     const zoomOutBtn = document.getElementById("zoomOut");
     const zoomLevelSpan = document.getElementById("zoomLevel");
 
-    // ==========================================================
+ // ==========================================================
     // DERGİ SAYILARI
     // ==========================================================
 
     const issues = {
-        "Sayı 4 (Yaz 2026) - SON SAYI": { folder: "sayi4", totalPages: 4 },
-        "Sayı 3 (Kış 2026)": { folder: "sayi_3", totalPages: 4 },
-        "Sayı 2 (Ekim 2025)": { folder: "sayi2", totalPages: 4 },
-        "Sayı 1 (Eylül 2024)": { folder: "sayi1", totalPages: 4 }
+        "Sayı 4 (Yaz 2026) - SON SAYI": { folder: "sayi4", totalPages: 24, ext: "png" },
+        "Sayı 3 (Kış 2026)": { folder: "sayi_3", totalPages: 4, ext: "jpg" },
+        "Sayı 2 (Ekim 2025)": { folder: "sayi2", totalPages: 4, ext: "jpg" },
+        "Sayı 1 (Eylül 2024)": { folder: "sayi1", totalPages: 4, ext: "jpg" }
     };
 
     // ==========================================================
@@ -114,9 +114,9 @@ function init() {
     // ==========================================================
 
     function updateMagazine() {
-        const { folder, totalPages } = currentIssue;
+        const { folder, totalPages, ext } = currentIssue;
 
-        pageImage.src = `images/${folder}/${currentPage}.jpg`;
+        pageImage.src = `images/${folder}/${currentPage}.${ext}`;
         pageNumberSpan.textContent = `${currentPage} / ${totalPages}`;
 
         prevButton.disabled = currentPage === 1;
